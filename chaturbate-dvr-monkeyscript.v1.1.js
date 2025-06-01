@@ -124,45 +124,6 @@ function Main() {
     //-----
 
 
-    function ChannelTracker( onUpdate ){
-        // Run once on load
-        onUpdate = typeof(onUpdate) === "function" ? onUpdate : function(){};
-        var channel_data = {};
-       /* var channel_data_json = localStorage.getItem("channeldata");
-        if( channel_data_json && channel_data_json !== "undefined" ) {
-            channel_data = JSON.parse( channel_data_json )
-            console.log(channel_data)
-        }
-*/
-        function storeChannelData(){
-            if(channel_data) localStorage.setItem("channeldata", JSON.stringify( channel_data ));
-        }
-        // Update object accordingly
-        document.body.addEventListener('htmx:afterSwap', function(e) {
-            let sswe_id = e.detail.elt.getAttribute('sse-swap')
-            if (sswe_id && sswe_id.endsWith("-info") ) {
-                var splt = e.detail.elt.innerText.split("\n")
-                if(splt.length > 1) {
-                    var channel_id = splt[0].trim();
-                    var status = splt[1].trim();
-                    if( channel_data[channel_id] !== status ) {
-                        //console.log("Status Change: " + channel_id + " ["+status+"]")
-                        channel_data[channel_id] = status;
-                        onUpdate(channel_id,status);
-                    }
-                }
-            }
-        });
-        // Store object
-        window.addEventListener("beforeunload", function (e) {
-            storeChannelData();
-        })
-
-        // setInterval( storeChannelData, 20000 ); // Should not be necesary
-
-    }
-
-
 
     //-----
     var CollapsibleItems = (function(){
@@ -232,14 +193,6 @@ function Main() {
 
         }
 
-        document.body.addEventListener("htmx:sseBeforeMessage", function (e) {
-            // stop it if "auto-update" was unchecked
-            //console.log("htmx:sseBeforeMessage", e)
-            let sswe_id = e.detail.elt.getAttribute('sse-swap')
-            if (sswe_id && sswe_id.endsWith("-log") ) {
-                //e.preventDefault();
-            }
-        })
 
         document.querySelectorAll('.ts-box.is-horizontal').forEach(el => {
             el.classList.add('collapsed');
@@ -291,15 +244,6 @@ function Main() {
         }
     },500)
     //-----
-
-
-
-
-    /*ChannelTracker( function(channel, status){
-        AutoSort.sortNow();
-        CollapsibleItems.update();
-    } )
-    */
 
     /* End of Main*/
 }

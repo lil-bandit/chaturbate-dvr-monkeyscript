@@ -248,5 +248,5 @@ function Main() {
     /* End of Main*/
 }
 
-
+// Works both onload and as "drop-in"
 document.readyState === "complete" ? Main() : window.addEventListener("load", Main);

@@ -5,7 +5,7 @@ Use with Tampermonkey or GreaseMonkey browserextension
 
 * Make the UI more compact
 * Add collapsible list items
-* Auto sort list ( OFFLINE > PAUSED > RECORDING )
+* Auto sort list ( Alphabetic in groups: RECORDING > PAUSED > OFFLINE )
 * Can paste the whole URL on "create channel"
 
 

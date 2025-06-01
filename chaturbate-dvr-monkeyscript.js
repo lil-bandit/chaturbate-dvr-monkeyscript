@@ -237,7 +237,7 @@ function Main() {
             //console.log("htmx:sseBeforeMessage", e)
             let sswe_id = e.detail.elt.getAttribute('sse-swap')
             if (sswe_id && sswe_id.endsWith("-log") ) {
-                e.preventDefault();
+                //e.preventDefault();
             }
         })
 

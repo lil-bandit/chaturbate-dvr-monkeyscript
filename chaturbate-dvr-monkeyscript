@@ -277,4 +277,32 @@ function Main() {
             el.addEventListener('change', function (e) {
                 let value = e.target.value.trim()
                 // Only try to extract channel ID if it looks like a chaturbate URL
-                if (value.includeX
+                if (value.includes('chaturbate.')) {
+                    let match = value.match(/^(?:https?:\/\/)?(?:[a-zA-Z0-9-]+\.)?chaturbate\.[a-z.]+\/([^\/\s?#]+)/i);
+                    if (match) {
+                        // Replace input with just the username
+                        e.target.value = match[1]
+                    }
+                }
+                // Otherwise, leave as-is (for comma-separated IDs)
+            });
+        }else {
+            console.log("could not attach")
+        }
+    },500)
+    //-----
+
+
+
+
+    /*ChannelTracker( function(channel, status){
+        AutoSort.sortNow();
+        CollapsibleItems.update();
+    } )
+    */
+
+    /* End of Main*/
+}
+
+
+document.readyState === "complete" ? Main() : window.addEventListener("load", Main);

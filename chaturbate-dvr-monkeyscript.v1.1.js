@@ -161,15 +161,15 @@ function Main() {
             if( !channel_id ) return null
             switch( el.textContent.trim() ) {
                 case "RECORDING":
-                    //console.log("RECORDING")
+                    //console.log(channel_id + " [RECORDING]")
                     fetch('/pause_channel/'+channel_id, { method: 'POST' })
                     break;
                 case "PAUSED":
-                    //console.log("PAUSED")
+                    //console.log(channel_id + " [PAUSED]")
                     fetch('/resume_channel/'+channel_id, { method: 'POST' })
                     break;
                 case "OFFLINE":
-                    //console.log("OFFLINE")
+                    //console.log(channel_id + " [OFFLINE]")
                     fetch('/pause_channel/'+channel_id, { method: 'POST' })
                     break;
 
